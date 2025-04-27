@@ -1,3 +1,4 @@
+/// <reference path="../types/custom.d.ts" />
 import express from 'express';
 import logger from '../utils/logger';
 import { castToObject } from '../utils/errors';
@@ -25,8 +26,7 @@ export const pushTrigger = async (req: express.Request, res: express.Response) =
 
     logger.info('secret value: ' + (await getSecret(config.secretName)), metadata);
 
-    return res.status(500).send({ error: "Simulated failure for dead-letter test" });
-
+    return res.status(500).send({ error: 'Simulated failure for dead-letter test' });
 
     // Generate a random file name and random content
     const randomFileName = `${generateRandomString(6)}.txt`;

@@ -3,9 +3,6 @@ import { pushTrigger, objectNotification } from '../controllers/demo';
 import pubsubBodyParser from "../middlewares/pubsubBodyParser";
 const router = r.Router();
 
-router.get('/', (req, res) => {
-    res.send('Service is running!');
-  });
 
 router.post('/push-trigger', [pubsubBodyParser] , pushTrigger);
 
