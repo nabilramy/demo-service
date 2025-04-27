@@ -31,7 +31,7 @@ resource "google_cloud_run_v2_service" "run_service" {
           value = var.project
         }
       }
-       service_account = var.service_account
+      service_account = var.service_account
   }
   depends_on = [null_resource.run_shell_script]
 }

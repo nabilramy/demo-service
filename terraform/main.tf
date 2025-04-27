@@ -1,4 +1,3 @@
-
 provider "google" {
     project = var.project
     region  = var.region
@@ -58,4 +57,15 @@ module "pubsub" {
     invoker_service_account = module.service_accounts.sa_demo_service_invoker_email
     bucket_name             = module.storage.bucket_name
     depends_on = [module.operations, module.storage]
+}
+
+module "cloudbuild" {
+    source           = "./modules/cloudbuild"
+    project          = var.project
+    region           = var.region
+    prefix           = var.prefix
+    repository_id    = module.operations.repository_id
+    run_service_name = var.run_service_name
+    run_version      = var.run_version
+    depends_on       = [module.operations]
 }
