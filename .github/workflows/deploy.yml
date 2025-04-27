@@ -49,3 +49,4 @@ jobs:
             --image $IMAGE_URL \
             --region $REGION \
             --platform managed
+            --allow-unauthenticated
