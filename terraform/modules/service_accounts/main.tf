@@ -1,9 +1,3 @@
-provider "google" {
-  project = var.project
-  region  = var.region
-}
-
-
 resource "google_service_account" "sa_demo_service_runner" {
   account_id   = "${var.prefix}-${local.sa_demo_service_runner.name}"
   display_name = local.sa_demo_service_runner.display_name

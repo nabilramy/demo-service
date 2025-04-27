@@ -16,11 +16,18 @@ module "operations" {
     prefix  = var.prefix
 }
 
+module "secret_manager" {
+    source      = "./modules/secret_manager"
+    prefix      = var.prefix
+    depends_on = [module.operations]
+}
+
 module "service_accounts" {
     source           = "./modules/service_accounts"
     project          = var.project
     region           = var.region
     prefix           = var.prefix
+    depends_on       = [module.secret_manager]
 }
 
 
@@ -30,12 +37,6 @@ module "storage" {
     region                  = var.region
     prefix                  = var.prefix
     runner_service_account  = module.service_accounts.sa_demo_service_runner_email
-    depends_on = [module.operations]
-}
-
-module "secret_manager" {
-    source      = "./modules/secret_manager"
-    prefix      = var.prefix
     depends_on = [module.operations]
 }
 

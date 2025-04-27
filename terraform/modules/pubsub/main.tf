@@ -18,6 +18,10 @@ resource "google_pubsub_subscription" "dead_lettering_subscription" {
   name  = "${var.prefix}-dead-lettering-subscription"
   topic = google_pubsub_topic.dead_letter_topic.id
   depends_on = [google_pubsub_topic.dead_letter_topic]
+  
+  lifecycle {
+    ignore_changes = [name]
+  }
 }
 ##############################################
 
@@ -27,6 +31,10 @@ resource "google_pubsub_subscription" "dead_lettering_subscription" {
 resource "google_pubsub_topic" "demo_topic" {
   name = "${var.prefix}-demo-topic"
   depends_on = [google_pubsub_topic.dead_letter_topic]
+  
+  lifecycle {
+    ignore_changes = [name]
+  }
 }
 
 resource "google_pubsub_subscription" "subscription_trigger_demo_service" {
