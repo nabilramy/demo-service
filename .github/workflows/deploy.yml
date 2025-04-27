@@ -13,7 +13,7 @@ env:
   PREFIX: nr
   VERSION: 0.0.3
   REPOSITORY: curamet-repo
-  IMAGE_URL: europe-docker.pkg.dev/curamet-onboarding/curamet-repo/am-demo-service:0.0.3
+  IMAGE_URL: europe-docker.pkg.dev/curamet-onboarding/curamet-repo/nr-demo-service:0.0.3
 
 jobs:
   deploy:

@@ -27,3 +27,7 @@ jobs:
       - name: Delete Cloud Run Service
         run: |
           gcloud run services delete $PREFIX-$SERVICE_NAME --region $REGION --platform managed --quiet
+
+      - name: Delete Storage Bucket
+        run: |
+          gsutil -m rm -r gs://$PREFIX-curamet-bucket || true

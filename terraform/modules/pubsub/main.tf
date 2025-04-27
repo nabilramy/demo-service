@@ -140,5 +140,21 @@ resource "google_pubsub_subscription_iam_member" "dead_lettering_subscriber_on_p
 }
 ##############################################
 
+resource "google_pubsub_subscription" "pull_subscription_demo_service" {
+  name  = "${var.prefix}-pull-subscription-demo-service"
+  topic = google_pubsub_topic.demo_topic.name
+
+  ack_deadline_seconds = 600
+
+  expiration_policy {
+    ttl = ""
+  }
+
+  message_retention_duration = "604800s" # 7 days
+  enable_message_ordering    = true
+
+  depends_on = [google_pubsub_topic.demo_topic]
+}
+
 
 
