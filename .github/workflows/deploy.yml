@@ -50,3 +50,7 @@ jobs:
             --region $REGION \
             --platform managed
             --allow-unauthenticated
+
+      - name: Apply Terraform
+        run: |
+          terraform apply -var="run_version=$VERSION" -var-file="environments/dev/terraform.tfvars" -auto-approve
